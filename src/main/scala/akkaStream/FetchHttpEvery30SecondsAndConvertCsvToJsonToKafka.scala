@@ -60,7 +60,7 @@ object FetchHttpEvery30SecondsAndConvertCsvToJsonToKafka
     .via(CsvToMap.toMap())
     .map(cleanseCsvData)
     .map(toJson)
-    .map(_.compactPrint)
+    .map(_.compactPrint) //JsValue to string
     .map{
       elem =>
         new ProducerRecord[String,String]("topic1",elem)
